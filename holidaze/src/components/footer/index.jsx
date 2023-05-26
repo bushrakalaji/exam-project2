@@ -3,7 +3,9 @@ import React from "react";
 export function Footer() {
   return (
     <>
-      <div> Bushra kalalji</div>
+      <div className="footer text-light bg-primary text-center p-4 mt-5">
+        Holidaze 2023 ©{" "}
+      </div>
     </>
   );
 }

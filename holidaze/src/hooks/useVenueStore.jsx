@@ -4,17 +4,39 @@ import { authFetch, headers } from "../auth/authFetch";
 const useVenueStore = create((set) => ({
   venues: [],
   booking: 0,
+  searchList: [],
   currentVenue: 0,
   createdVenue: 0,
   updatedVenue: 0,
   isLoading: false,
   hasError: false,
+  adminVenues: [],
+  fetchAdminVenues: async (url) => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await authFetch(url);
+      const json = await response.json();
+      set(() => ({ adminVenues: json, isLoading: false }));
+    } catch (error) {
+      set(() => ({ hasError: true, isLoading: false }));
+    }
+  },
   fetchVenues: async (url) => {
     set(() => ({ isLoading: true }));
     try {
       const response = await fetch(url);
       const json = await response.json();
       set(() => ({ venues: json, isLoading: false }));
+    } catch (error) {
+      set(() => ({ hasError: true, isLoading: false }));
+    }
+  },
+  fetchSearch: async (url) => {
+    set(() => ({ isLoading: true }));
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+      set(() => ({ searchList: json, isLoading: false }));
     } catch (error) {
       set(() => ({ hasError: true, isLoading: false }));
     }
@@ -114,6 +136,8 @@ function useVenues() {
   const venues = useVenueStore((state) => state.venues);
   const currentVenue = useVenueStore((state) => state.currentVenue);
   const fetchVenues = useVenueStore((state) => state.fetchVenues);
+  const fetchSearch = useVenueStore((state) => state.fetchSearch);
+  const searchList = useVenueStore((state) => state.searchList);
   const fetchVenue = useVenueStore((state) => state.fetchVenue);
   const isLoading = useVenueStore((state) => state.isLoading);
   const hasError = useVenueStore((state) => state.hasError);
@@ -124,6 +148,8 @@ function useVenues() {
   const updateVenue = useVenueStore((state) => state.updateVenue);
   const updatedVenue = useVenueStore((state) => state.updatedVenue);
   const deleteVenue = useVenueStore((state) => state.deleteVenue);
+  const adminVenues = useVenueStore((state) => state.adminVenues);
+  const fetchAdminVenues = useVenueStore((state) => state.fetchAdminVenues);
   return {
     venues,
     currentVenue,
@@ -138,6 +164,10 @@ function useVenues() {
     updateVenue,
     updatedVenue,
     deleteVenue,
+    adminVenues,
+    fetchAdminVenues,
+    fetchSearch,
+    searchList,
   };
 }
 

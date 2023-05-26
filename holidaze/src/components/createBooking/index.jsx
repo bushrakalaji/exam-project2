@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Button, Form } from "react-bootstrap";
+
 import { useVenues } from "../../hooks/useVenueStore";
 import DateRangePicker from "../rangeDate/";
+import * as Yup from "yup";
+import { load } from "../../storage/index.mjs";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const bookingSchema = Yup.object().shape({
+  guests: Yup.number().required("Guests is required").min(1, "Minimum 1 guest"),
+});
 
 function CreateBooking() {
-  const { sendBookings } = useVenues();
+  const { sendBookings, currentVenue } = useVenues();
+  const token = load("token");
+  const navigate = useNavigate();
 
   const [selectionRange, setSelectionRange] = useState({
     startDate: new Date(),
@@ -14,14 +26,27 @@ function CreateBooking() {
   let { id } = useParams();
   const [guests, setGuests] = useState(1);
   const [submitBooking, setSubmitBooking] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitBooking(true);
+
+    try {
+      await bookingSchema.validate({ guests });
+      setSubmitBooking(true);
+      toast.success("Booking submitted successfully!", {
+        onClose: () => {
+          window.location.reload();
+        },
+      });
+    } catch (error) {
+      setErrors({ guests: error.message });
+    }
   };
 
   const handleGuestChange = (e) => {
     setGuests(Number(e.target.value));
+    setErrors({ ...errors, guests: "" });
   };
 
   useEffect(() => {
@@ -39,7 +64,7 @@ function CreateBooking() {
         venueId: id,
         guests: guests,
       };
-      console.log(bookingData);
+
       sendBookings(
         "https://api.noroff.dev/api/v1/holidaze/bookings",
         bookingData
@@ -50,16 +75,50 @@ function CreateBooking() {
   }, [submitBooking, sendBookings, selectionRange, id, guests]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Guests:</label>
-        <input type="number" value={guests} onChange={handleGuestChange} />
-      </div>
-      <div>
-        <DateRangePicker setSelectionRange={setSelectionRange} />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <Form
+      onSubmit={handleSubmit}
+      className="shadow-lg p-3 mb-5 bg-body rounded d-flex flex-column align-items-auto p-2 rounded"
+    >
+      <Form.Group className="mb-2 gsts-input d-flex gap-2 align-items-center">
+        <Form.Label className="text-primary">Guests:</Form.Label>
+        <Form.Control
+          type="number"
+          value={guests}
+          onChange={handleGuestChange}
+          min={1}
+          max={currentVenue?.maxGuests}
+          isInvalid={!!errors.guests}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.guests && errors.guests.message}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      <DateRangePicker setSelectionRange={setSelectionRange} />
+
+      {token ? (
+        <>
+          <Button
+            type="submit"
+            className="mt-4 btn-primary
+          "
+          >
+            Submit
+          </Button>
+
+          <ToastContainer />
+        </>
+      ) : (
+        <Button
+          type="button"
+          className="mt-4 btn-danger"
+          onClick={() => navigate("/login")}
+        >
+          Log In to Book
+        </Button>
+      )}
+    </Form>
   );
 }
+
 export default CreateBooking;

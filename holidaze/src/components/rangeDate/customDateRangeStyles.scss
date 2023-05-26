@@ -1,0 +1,7 @@
+@import "../../styles/style.scss";
+
+.rdrSelected,
+.rdrInRange {
+  background: $danger ;
+  cursor: not-allowed;
+}

@@ -5,10 +5,10 @@ const useBookingStore = create((set) => ({
   bookings: [],
   updatedBooking: 0,
   currentBooking: 0,
+  deletedBooking: false,
   isLoading: false,
   hasError: false,
   deleteBooking: async (url) => {
-    set(() => ({ isLoading: true }));
     try {
       const response = await authFetch(url, {
         method: "DELETE",
@@ -16,11 +16,13 @@ const useBookingStore = create((set) => ({
       });
 
       if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+        const json = await response.json();
+        throw new Error(`Error: ${json.error[0].message}`);
       }
 
-      set(() => ({ isLoading: false }));
+      set(() => ({ deletedBooking: true, isLoading: false }));
     } catch (error) {
+      console.error(error); // This will help you understand the error.
       set(() => ({ hasError: true, isLoading: false }));
     }
   },
@@ -72,9 +74,9 @@ function useBookings() {
   const isLoading = useBookingStore((state) => state.isLoading);
   const hasError = useBookingStore((state) => state.hasError);
   const updatedBooking = useBookingStore((state) => state.updatedBooking);
-  const sendBookings = useBookingStore((state) => state.sendBookings);
   const updateBookings = useBookingStore((state) => state.updateBookings);
   const deleteBooking = useBookingStore((state) => state.deleteBooking);
+  const deletedBooking = useBookingStore((state) => state.deletedBooking);
   return {
     bookings,
     currentBooking,
@@ -83,9 +85,9 @@ function useBookings() {
     isLoading,
     hasError,
     updatedBooking,
-    sendBookings,
     updateBookings,
     deleteBooking,
+    deletedBooking,
   };
 }
 

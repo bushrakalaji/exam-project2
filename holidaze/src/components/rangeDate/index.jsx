@@ -3,7 +3,7 @@ import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import "./customDateRangeStyles.css";
+import "./customDateRangeStyles.scss";
 
 import { useVenueStore } from "../../hooks/useVenueStore";
 

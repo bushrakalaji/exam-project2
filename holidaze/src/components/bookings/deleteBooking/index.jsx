@@ -1,36 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useBookings } from "../../../hooks/useBookingStore";
 
-function DeleteBooking({ onDelete }) {
-  const { deleteBooking, isLoading, hasError } = useBookings();
+import { API_BASE_URL } from "../../../api/api";
+import { Button, Modal } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
 
+function DeleteBooking({ onBookingDeleted }) {
+  const { deleteBooking, isLoading, hasError } = useBookings();
   let { id } = useParams();
 
-  useEffect(() => {
-    async function deleteAndRedirect() {
-      try {
-        await deleteBooking(
-          `https://api.noroff.dev/api/v1/holidaze/bookings/${id}`,
-          id
-        );
-        if (onDelete) {
-          onDelete();
-        }
-      } catch (error) {
-        console.error("Error deleting the booking: ", error);
-      }
-    }
+  const handleDelete = async () => {
+    try {
+      await deleteBooking(`${API_BASE_URL}/bookings/${id}`, id);
 
-    deleteAndRedirect();
-  }, [id, deleteBooking, onDelete]);
+      onBookingDeleted();
+    } catch (error) {
+      console.error(error);
+      toast.error("There was an error deleting the booking. Please try again.");
+    }
+  };
+
+  const [show, setShow] = useState(false);
+  const handelClose = () => setShow(false);
+  const handelShow = () => setShow(true);
 
   return (
     <div>
-      {isLoading && <p>Deleting booking...</p>}
-      {hasError && (
-        <p>There was an error deleting the booking. Please try again.</p>
-      )}
+      <Button onClick={handelShow} className=" dropdown-item ">
+        Delete
+      </Button>
+      <Modal show={show} onHide={handelClose} centered>
+        <Modal.Header closeButton>Delete booking</Modal.Header>
+        <Modal.Body className="d-flex flex-column align-items-center gap-5">
+          <div>Are you sure you want to delete the booking?</div>
+          <button onClick={() => handleDelete(id)} className="btn btn-danger">
+            Confirm Delete
+          </button>
+          {isLoading && <p>Deleting venue...</p>}
+          {hasError && (
+            <p>There was an error deleting the venue. Please try again.</p>
+          )}{" "}
+        </Modal.Body>
+        <ToastContainer />
+      </Modal>
     </div>
   );
 }

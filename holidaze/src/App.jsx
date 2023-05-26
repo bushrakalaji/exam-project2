@@ -2,18 +2,23 @@ import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/layout";
-import LoginPage from "./pages/login";
-import RegisterPage from "./pages/register";
-import Dashboard from "./components/admin/dashboard";
+
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import "./sass/styles.scss";
 import HomePage from "./pages/home";
 import Venue from "./components/venue";
 import MyBooking from "./components/bookings";
 import BookingById from "./components/bookings/booking";
 import UpdateBooking from "./components/bookings/update";
 import UpdateVenuePage from "./pages/admin/update";
+import DashboardLayout from "./components/admin/dashboard";
+import CreateVenue from "./components/admin/createVenue";
+import AdminVenues from "./components/admin/venues";
+import BookedVenues from "./components/admin/bookedVenues";
+import LoginForm from "./components/login";
+import RegisterForm from "./components/register";
+import ProfilePage from "./pages/profile";
+import UpdateAvatar from "./components/profile/update";
 
 function App() {
   return (
@@ -24,13 +29,20 @@ function App() {
           <Route path="venues/:id" element={<Venue />} />
           <Route path="/bookings" element={<MyBooking />} />
           <Route path="booking/:id" element={<BookingById />} />
+          <Route path="update/:id" element={<UpdateVenuePage />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="updateBooking/:id" element={<UpdateBooking />} />
+          <Route path="profile/:name" element={<ProfilePage />} />
+          <Route path="updateAvatar/:name" element={<UpdateAvatar />} />
+          <Route path="/venues" element={<AdminVenues />} />
+        </Route>{" "}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="/dashboard/create" element={<CreateVenue />} />
+          <Route path="/dashboard/bookings" element={<MyBooking />} />
+          <Route path="/dashboard/venues" element={<AdminVenues />} />
+          <Route path="/dashboard/booked" element={<BookedVenues />} />
         </Route>
-
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="update/:id" element={<UpdateVenuePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="updateBooking/:id" element={<UpdateBooking />} />
       </Routes>
     </>
   );

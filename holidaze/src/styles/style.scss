@@ -1,0 +1,38 @@
+
+
+// scss-docs-start color-variables
+$blue:    #1D3557 ;
+$indigo:  #6610f2 ;
+$purple:  #6f42c1 ;
+$pink:    #d63384 ;
+$red:     #A31420 ;
+$orange:  #fd7e14 ;
+$yellow:  #ffc107 ;
+$green:   #A8DADC ;
+$teal:    #F1FAEE ;
+$cyan:    #bbe5ff ;
+
+
+
+// scss-docs-start gray-color-variables
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+// scss-docs-start theme-color-variables
+$primary:       $blue ;
+$secondary:     $gray-300;
+$success:       $green ;
+$info:          $cyan ;
+$warning:       $yellow ;
+$danger:        $red ;
+$light:         $white ;
+$dark:          $gray-900 ;

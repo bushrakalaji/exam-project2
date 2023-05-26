@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { DateRange } from "react-date-range";
-import { addDays } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
@@ -14,7 +13,7 @@ function UpdateDateRangePicker({ setSelectionRange }) {
   useEffect(() => {
     fetchVenue(
       `https://api.noroff.dev/api/v1/holidaze/venues/${id}?_bookings=true&_owner=true`
-    );
+    ); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const [selectionRangeState, setSelectionRangeState] = useState({
@@ -49,7 +48,7 @@ function UpdateDateRangePicker({ setSelectionRange }) {
         }));
 
       setBookedDates(bookedRanges);
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVenue.bookings]);
 
   return (
