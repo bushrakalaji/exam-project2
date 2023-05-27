@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
-
 import { useVenues } from "../../hooks/useVenueStore";
 import DateRangePicker from "../rangeDate/";
 import * as Yup from "yup";
@@ -77,7 +76,7 @@ function CreateBooking() {
   return (
     <Form
       onSubmit={handleSubmit}
-      className="shadow-lg p-3 mb-5 bg-body rounded d-flex flex-column align-items-auto p-2 rounded"
+      className="shadow-lg p-3 mb-5  rounded d-flex flex-column align-items-auto p-2 rounded"
     >
       <Form.Group className="mb-2 gsts-input d-flex gap-2 align-items-center">
         <Form.Label className="text-primary">Guests:</Form.Label>
@@ -99,8 +98,9 @@ function CreateBooking() {
       {token ? (
         <>
           <Button
+            variant="outline-success"
             type="submit"
-            className="mt-4 btn-primary
+            className="mt-4 
           "
           >
             Submit
@@ -111,7 +111,8 @@ function CreateBooking() {
       ) : (
         <Button
           type="button"
-          className="mt-4 btn-danger"
+          className="mt-4"
+          variant="outline-primary"
           onClick={() => navigate("/login")}
         >
           Log In to Book

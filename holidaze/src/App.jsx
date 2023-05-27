@@ -12,13 +12,13 @@ import BookingById from "./components/bookings/booking";
 import UpdateBooking from "./components/bookings/update";
 import UpdateVenuePage from "./pages/admin/update";
 import DashboardLayout from "./components/admin/dashboard";
-import CreateVenue from "./components/admin/createVenue";
 import AdminVenues from "./components/admin/venues";
 import BookedVenues from "./components/admin/bookedVenues";
 import LoginForm from "./components/login";
 import RegisterForm from "./components/register";
 import ProfilePage from "./pages/profile";
 import UpdateAvatar from "./components/profile/update";
+import DashboardIntro from "./components/admin/intro";
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
           <Route path="/venues" element={<AdminVenues />} />
         </Route>{" "}
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="/dashboard/create" element={<CreateVenue />} />
+          <Route index element={<DashboardIntro />} />
           <Route path="/dashboard/bookings" element={<MyBooking />} />
           <Route path="/dashboard/venues" element={<AdminVenues />} />
           <Route path="/dashboard/booked" element={<BookedVenues />} />

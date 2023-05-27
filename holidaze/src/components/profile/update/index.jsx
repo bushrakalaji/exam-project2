@@ -58,7 +58,7 @@ function UpdateAvatar() {
                 id="avatar"
               />
               {updatedAvatar.errors && updatedAvatar.errors[0] && (
-                <span className="text-danger">
+                <span className="alert alert-danger">
                   {updatedAvatar?.errors[0]?.message}
                 </span>
               )}

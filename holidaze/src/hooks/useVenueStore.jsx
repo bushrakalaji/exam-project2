@@ -7,6 +7,7 @@ const useVenueStore = create((set) => ({
   searchList: [],
   currentVenue: 0,
   createdVenue: 0,
+  createdSuccsess: false,
   updatedVenue: 0,
   isLoading: false,
   hasError: false,
@@ -62,12 +63,10 @@ const useVenueStore = create((set) => ({
         body: JSON.stringify(data),
       });
       const json = await response.json();
-
+      set((state) => ({ booking: (state.booking = json), isLoading: false }));
       if (!response.ok) {
         throw new Error(`Error: ${json.errors[0].message}`);
       }
-
-      set((state) => ({ booking: (state.booking = json), isLoading: false }));
     } catch (error) {
       set(() => ({ hasError: true, isLoading: false }));
     }
@@ -81,15 +80,15 @@ const useVenueStore = create((set) => ({
       });
 
       const json = await response.json();
-
-      if (!response.ok) {
-        throw new Error(`Error: ${json.errors[0].message}`);
-      }
-
       set((state) => ({
         createdVenue: (state.createdVenue = json),
         isLoading: false,
       }));
+      if (!response.ok) {
+        throw new Error(`Error: ${json.errors[0].message}`);
+      }
+
+      set(() => ({ createdSuccsess: true }));
     } catch (error) {
       set(() => ({ hasError: true, isLoading: false }));
     }
@@ -103,12 +102,10 @@ const useVenueStore = create((set) => ({
       });
 
       const json = await response.json();
-
+      set((state) => ({ updatedVenue: state.json, isLoading: false }));
       if (!response.ok) {
         throw new Error(`Error: ${json.errors[0].message}`);
       }
-
-      set((state) => ({ updatedVenue: state.json, isLoading: false }));
     } catch (error) {
       set(() => ({ hasError: true, isLoading: false }));
     }
@@ -150,6 +147,8 @@ function useVenues() {
   const deleteVenue = useVenueStore((state) => state.deleteVenue);
   const adminVenues = useVenueStore((state) => state.adminVenues);
   const fetchAdminVenues = useVenueStore((state) => state.fetchAdminVenues);
+  const createdSuccsess = useVenueStore((state) => state.createdSuccsess);
+
   return {
     venues,
     currentVenue,
@@ -168,6 +167,7 @@ function useVenues() {
     fetchAdminVenues,
     fetchSearch,
     searchList,
+    createdSuccsess,
   };
 }
 

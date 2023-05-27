@@ -61,16 +61,13 @@ a {
   max-width: 150px !important;
 }
 
-.nav-tabs .nav-link.active {
-  background-color: $danger !important;
-  color: $white !important;
-}
+
 
 .dropdown-toggle::after {
   display: none !important;
 }
 
-p {
+p , .f-elza{
   font-family: "elza-text";
 }
 
