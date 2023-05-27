@@ -9,7 +9,6 @@ function DashboardLayout() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <ManagerNavBar />
-
       <AdminBourd />
       <Container className="flex-grow-1">
         <Outlet className="flex-shrink-0" />

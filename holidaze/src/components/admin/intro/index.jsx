@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 function DashboardIntro() {
   return (
     <div
-      className=" rounded flex-column  d-flex   m-auto gap-1"
+      className=" rounded flex-column  d-flex m-auto gap-1"
       style={{ maxWidth: "700px" }}
     >
       <h1>Welcome to holidaze Dashboard</h1>
