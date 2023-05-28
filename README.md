@@ -1,4 +1,4 @@
-# Holidaze - A Front-End Accommodation Booking Application
+# Holidaze -  Accommodation Booking Application
 
 ## Table of Contents
 
