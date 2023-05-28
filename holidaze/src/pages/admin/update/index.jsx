@@ -1,12 +1,12 @@
-import React from "react";
-import UpdateVenue from "../../../components/admin/updateVenue";
+// import React from "react";
+// import UpdateVenue from "../../../components/admin/updateVenue";
 
-function UpdateVenuePage() {
-  return (
-    <div>
-      <UpdateVenue />
-    </div>
-  );
-}
+// function UpdateVenuePage() {
+//   return (
+//     <div>
+//       <UpdateVenue />
+//     </div>
+//   );
+// }
 
-export default UpdateVenuePage;
+// export default UpdateVenuePage;

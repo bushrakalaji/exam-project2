@@ -1,12 +1,18 @@
 import { create } from "zustand";
 import { authFetch, headers } from "../auth/authFetch";
+import { toast } from "react-toastify";
 
+const notify = () =>
+  toast.success("Venue updated  successfully!", {
+    draggable: false,
+  });
 const useVenueStore = create((set) => ({
   venues: [],
   booking: 0,
   searchList: [],
   currentVenue: 0,
   createdVenue: 0,
+  updateError: null,
   createdSuccsess: false,
   updatedVenue: 0,
   isLoading: false,
@@ -102,12 +108,17 @@ const useVenueStore = create((set) => ({
       });
 
       const json = await response.json();
-      set((state) => ({ updatedVenue: state.json, isLoading: false }));
+      set(() => ({ updatedVenue: json, updateError: null, isLoading: false }));
       if (!response.ok) {
         throw new Error(`Error: ${json.errors[0].message}`);
       }
+      notify();
     } catch (error) {
-      set(() => ({ hasError: true, isLoading: false }));
+      set(() => ({
+        updatedVenue: null,
+        updateError: error.message,
+        isLoading: false,
+      }));
     }
   },
   deleteVenue: async (url) => {
@@ -148,7 +159,7 @@ function useVenues() {
   const adminVenues = useVenueStore((state) => state.adminVenues);
   const fetchAdminVenues = useVenueStore((state) => state.fetchAdminVenues);
   const createdSuccsess = useVenueStore((state) => state.createdSuccsess);
-
+  const updateError = useVenueStore((state) => state.updateError);
   return {
     venues,
     currentVenue,
@@ -168,6 +179,7 @@ function useVenues() {
     fetchSearch,
     searchList,
     createdSuccsess,
+    updateError,
   };
 }
 

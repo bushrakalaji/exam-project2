@@ -7,6 +7,7 @@ const notify = () =>
     onClose: () => {
       window.location.reload();
     },
+    draggable: false,
   });
 const useProfileStore = create((set) => ({
   profiles: [],
@@ -50,7 +51,6 @@ const useProfileStore = create((set) => ({
       set(() => ({ updatedAvatar: json, isLoading: false }));
 
       if (!response.ok) {
-        console.log(json.errors[0].message);
         throw new Error(`Error: ${json.errors[0].message}`);
       }
       notify();
@@ -68,7 +68,7 @@ function useProfile() {
   const hasError = useProfileStore((state) => state.hasError);
   const updateAvatar = useProfileStore((state) => state.updateAvatar);
   const updatedAvatar = useProfileStore((state) => state.updatedAvatar);
-  console.log(updatedAvatar);
+
   return {
     profiles,
     profile,

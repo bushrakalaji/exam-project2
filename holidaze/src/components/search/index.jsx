@@ -3,6 +3,7 @@ import { Form, ListGroup } from "react-bootstrap";
 import { useVenues } from "../../hooks/useVenueStore";
 import { LinkContainer } from "react-router-bootstrap";
 import { API_BASE_URL } from "../../api/api";
+import IsLoading from "../isLoading";
 
 function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -34,11 +35,7 @@ function SearchBar() {
   };
 
   if (isLoading) {
-    return (
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    );
+    return <IsLoading />;
   }
 
   if (hasError) {
@@ -46,22 +43,19 @@ function SearchBar() {
   }
 
   return (
-    <Form
-      style={{ maxWidth: "300px", marginTop: "10px", position: "relative" }}
-    >
+    <Form>
       <Form.Group>
-        <div className="d-flex align-items-center border  rounded  gap-2">
+        <div className=" border  rounded    form-floating">
           <Form.Control
             type="text"
             placeholder="Search for Venues..."
             value={searchQuery}
             onChange={handelChange}
-            style={{ border: "none" }}
+            style={{ border: "none", width: "300px" }}
             id="search"
           />
           <label htmlFor="search">
-            {" "}
-            <i className="bi bi-search text-primary m-1"></i>
+            <i className="bi bi-search text-primary"></i> Search
           </label>
         </div>
         {searchQuery && (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Pagination } from "react-bootstrap";
 import { useVenues } from "../../hooks/useVenueStore";
+import IsLoading from "../isLoading";
 import VenueCard from "../venueCard";
 
 function VenuesList() {
@@ -16,7 +17,7 @@ function VenuesList() {
   }, [fetchVenues]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <IsLoading />;
   }
   if (hasError) {
     return <div>Error</div>;

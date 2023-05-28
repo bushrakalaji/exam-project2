@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
@@ -50,10 +51,11 @@ function CreateVenue() {
         navigate("/dashboard/venues");
         window.location.reload();
       },
+      draggable: false,
     });
 
   const { createVenue, createdSuccsess, createdVenue } = useVenues();
-  console.log(createdVenue);
+
   const {
     register,
     handleSubmit,
@@ -68,7 +70,6 @@ function CreateVenue() {
   });
   const onSubmit = (data) => {
     createVenue(`${API_BASE_URL}/venues`, data);
-    console.log(data);
   };
 
   if (createdSuccsess) {
@@ -77,7 +78,7 @@ function CreateVenue() {
   return (
     <div>
       <Button onClick={handelShow} className="nav-link nav-tabs fs-5">
-        <i class="bi bi-pencil-square"></i> Create Venue
+        <i className="bi bi-pencil-square"></i> Create Venue
       </Button>
       <Modal show={show} onHide={handelClose} centered>
         <Modal.Header closeButton>Create Venue</Modal.Header>
@@ -168,7 +169,7 @@ function CreateVenue() {
               </div>
               <div className="d-flex gap-5  flex-wrap">
                 <div className="d-flex gap-1">
-                  <label for="wifi">Wifi:</label>
+                  <label htmlFor="wifi">Wifi:</label>
                   <input
                     type="checkbox"
                     {...register("meta.wifi")}
@@ -177,7 +178,7 @@ function CreateVenue() {
                   />
                 </div>
                 <div className="d-flex gap-1">
-                  <label for="parking">parking:</label>
+                  <label htmlFor="parking">parking:</label>
                   <input
                     type="checkbox"
                     {...register("meta.parking")}
@@ -186,7 +187,7 @@ function CreateVenue() {
                   />
                 </div>
                 <div className="d-flex gap-1">
-                  <label for="breackfast">breakfast:</label>
+                  <label htmlFor="breackfast">breakfast:</label>
                   <input
                     type="checkbox"
                     {...register("meta.breakfast")}
@@ -195,7 +196,7 @@ function CreateVenue() {
                   />
                 </div>
                 <div className="d-flex gap-1">
-                  <label for="pets">pets:</label>
+                  <label htmlFor="pets">pets:</label>
                   <input
                     type="checkbox"
                     {...register("meta.pets")}
@@ -284,7 +285,7 @@ function CreateVenue() {
                   </span>
                 )}
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-outline-primary"
                   type="button"
                   onClick={() => append("")}
                 >

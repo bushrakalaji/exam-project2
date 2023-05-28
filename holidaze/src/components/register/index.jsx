@@ -27,7 +27,7 @@ const schema = yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
 });
-function RegisterForm() {
+function RegisterForm({ color }) {
   const [serverError, setServerError] = useState("");
   const {
     register,
@@ -53,7 +53,6 @@ function RegisterForm() {
         throw new Error(errorData.errors[0].message);
       }
 
-      console.log("Registration successful");
       setServerError("");
     } catch (error) {
       setServerError(error.message);
@@ -62,7 +61,13 @@ function RegisterForm() {
 
   return (
     <div>
-      <Button onClick={handelShow}>Register</Button>
+      <Button
+        onClick={handelShow}
+        style={{ color: color }}
+        variant="btn btn-outline-primary"
+      >
+        Register
+      </Button>
       <Modal show={show} onHide={handelClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>REGISTER</Modal.Title>
@@ -72,9 +77,6 @@ function RegisterForm() {
             onSubmit={handleSubmit(onSubmit)}
             className="d-flex flex-column gap-3 text-primary p-3 rounded"
           >
-            {serverError && (
-              <div className="alert alert-danger">{serverError}</div>
-            )}
             <Form.Group className="d-flex flex-column gap-1">
               <Form.Label>Name:</Form.Label>
               <Form.Control
@@ -142,20 +144,24 @@ function RegisterForm() {
                 {...register("venueManager")}
                 id="venueManeger"
               />
-            </Form.Group>
+            </Form.Group>{" "}
+            {serverError && (
+              <div className="alert alert-danger">{serverError}</div>
+            )}
             <div className="d-flex gap-2">
               <Button
                 type="submit"
-                className="btn btn-primary  form-control"
+                className="form-control"
+                variant="btn btn-outline-primary"
                 style={{ width: "50%" }}
               >
                 Register{" "}
               </Button>
 
               <Button
-                className="btn btn-primary "
                 style={{ width: "50%" }}
                 onClick={handelClose}
+                variant="btn btn-outline-primary"
               >
                 Cansel
               </Button>

@@ -15,7 +15,6 @@ function UpdateAvatar() {
   const { profile, updateAvatar, updatedAvatar } = useProfile();
   const [show, setShow] = useState(false);
   const { name } = useParams();
-  console.log(name);
   const handelClose = () => setShow(false);
   const handelShow = () => setShow(true);
 
@@ -32,8 +31,6 @@ function UpdateAvatar() {
 
   const onSubmit = (data) => {
     updateAvatar(`${API_BASE_URL}/profiles/${name}/media`, data);
-
-    console.log(data);
   };
 
   return (
@@ -49,7 +46,7 @@ function UpdateAvatar() {
             className="d-flex flex-column gap-5 "
           >
             <div>
-              <label for="avatar">Avatar URL</label>
+              <label htmlFor="avatar">Avatar URL</label>
               <input
                 type="url"
                 {...register("avatar")}

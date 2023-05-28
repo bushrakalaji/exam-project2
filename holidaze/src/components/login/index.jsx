@@ -13,15 +13,15 @@ const schema = yup.object().shape({
   email: yup.string().email().required("Email is required"),
   password: yup.string().required("Password is required"),
 });
-function LoginForm() {
+function LoginForm({ color }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const [serverError, setServerError] = useState("");
   const [show, setShow] = useState(false);
-
   const handelClose = () => setShow(false);
   const handelShow = () => setShow(true);
   const notify = () =>
@@ -29,6 +29,7 @@ function LoginForm() {
       onClose: () => {
         window.location.reload();
       },
+      draggable: false,
     });
 
   const onSubmit = async (data) => {
@@ -42,22 +43,31 @@ function LoginForm() {
       });
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        const loginInfo = await response.json();
+        throw new Error(loginInfo.errors[0].message);
       }
 
       const loginInfo = await response.json();
 
+      setServerError("");
       storage.save("token", loginInfo.accessToken);
       storage.save("profile", loginInfo);
       notify();
     } catch (error) {
-      console.error(error);
+      setServerError(error.message);
     }
   };
 
   return (
-    <div className="">
-      <Button onClick={handelShow}>Login</Button>
+    <div>
+      <Button
+        onClick={handelShow}
+        variant=" btn btn-outline-primary"
+        className=""
+        style={{ color: color }}
+      >
+        Login
+      </Button>
       <Modal show={show} onHide={handelClose} centered>
         <Modal.Header closeButton>Login</Modal.Header>
         <Modal.Body>
@@ -92,20 +102,24 @@ function LoginForm() {
               <span className="alert alert-danger">
                 {errors.password.message}
               </span>
+            )}{" "}
+            {serverError && (
+              <div className="alert alert-danger">{serverError}</div>
             )}
             <div className="d-flex gap-2">
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-outline-primary"
                 style={{ width: "50%" }}
               >
                 Login
               </button>
               <ToastContainer />
+
               <Button
-                className="btn btn-primary "
                 style={{ width: "50%" }}
                 onClick={handelClose}
+                variant="btn btn-outline-primary"
               >
                 Cansel
               </Button>

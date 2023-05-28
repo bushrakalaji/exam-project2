@@ -27,7 +27,7 @@ function UpdateBooking() {
     key: "selection",
   });
   const currentGuests = currentBooking.guests;
-  console.log(currentGuests);
+
   let { id } = useParams();
   const [guests, setGuests] = useState(currentGuests);
   const [submitBooking, setSubmitBooking] = useState(false);
@@ -39,6 +39,7 @@ function UpdateBooking() {
       onClose: () => {
         window.location.reload();
       },
+      draggable: false,
     });
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,7 +81,7 @@ function UpdateBooking() {
         venueId: id,
         guests: guests,
       };
-      console.log(bookingData);
+
       updateBookings(
         `https://api.noroff.dev/api/v1/holidaze/bookings/${id}`,
         bookingData

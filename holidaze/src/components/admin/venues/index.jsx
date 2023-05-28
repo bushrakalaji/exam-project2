@@ -4,12 +4,12 @@ import { useVenues } from "../../../hooks/useVenueStore";
 import VenueCard from "../../venueCard";
 import { Col, Row } from "react-bootstrap";
 import { load } from "../../../storage/index.mjs";
+import IsLoading from "../../isLoading";
 
 function AdminVenues() {
   const { fetchAdminVenues, adminVenues, isLoading, hasError } = useVenues();
   const profile = load("profile");
   const name = profile.name;
-  console.log(name);
 
   useEffect(() => {
     fetchAdminVenues(
@@ -18,7 +18,7 @@ function AdminVenues() {
   }, [fetchAdminVenues, name]);
 
   if (isLoading) {
-    return <div>...Loading</div>;
+    return <IsLoading />;
   }
   if (hasError) {
     return <div>error</div>;

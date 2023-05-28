@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import { useVenues } from "../../hooks/useVenueStore";
 import DateRangePicker from "../rangeDate/";
@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { load } from "../../storage/index.mjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginForm from "../login";
 
 const bookingSchema = Yup.object().shape({
   guests: Yup.number().required("Guests is required").min(1, "Minimum 1 guest"),
@@ -15,7 +16,6 @@ const bookingSchema = Yup.object().shape({
 function CreateBooking() {
   const { sendBookings, currentVenue } = useVenues();
   const token = load("token");
-  const navigate = useNavigate();
 
   const [selectionRange, setSelectionRange] = useState({
     startDate: new Date(),
@@ -37,6 +37,7 @@ function CreateBooking() {
         onClose: () => {
           window.location.reload();
         },
+        draggable: false,
       });
     } catch (error) {
       setErrors({ guests: error.message });
@@ -109,14 +110,10 @@ function CreateBooking() {
           <ToastContainer />
         </>
       ) : (
-        <Button
-          type="button"
-          className="mt-4"
-          variant="outline-primary"
-          onClick={() => navigate("/login")}
-        >
-          Log In to Book
-        </Button>
+        <div className="d-flex gap-2 align-items-center justify-content-center">
+          <span>Login to book</span>
+          <LoginForm />
+        </div>
       )}
     </Form>
   );

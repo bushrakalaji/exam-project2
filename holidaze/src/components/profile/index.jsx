@@ -12,6 +12,7 @@ import { NavDropdown } from "react-bootstrap";
 import UpdateAvatar from "./update";
 import { useParams } from "react-router";
 import HasError from "../hasError";
+import IsLoading from "../isLoading";
 
 function ProfileInfo() {
   const { name } = useParams();
@@ -37,15 +38,14 @@ function ProfileInfo() {
       `${API_BASE_URL}/profiles/${name}?_venues=true&_bookings=true`
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchProfile]);
+  }, [fetchProfile, name]);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <IsLoading />;
   }
   if (hasError) {
     return <HasError />;
   }
 
-  console.log(profile);
   return (
     <>
       <div className="rounded-bottom shadow ">
@@ -89,7 +89,7 @@ function ProfileInfo() {
             </div>
           ) : null}
         </div>
-        <div className="d-flex  mt-5 align-items-top gap-5  p-5  container flex-wrap justify-content-between position-relative">
+        <div className="d-flex  mt-5 align-items-top gap-5  p-5  container flex-wrap justify-content-start position-relative">
           <div className="position-relative d-flex flex-column  ">
             <div className="d-flex align-items-center gap-2">
               <span className="text-capitalize fs-3">{profile.name}</span>
@@ -128,15 +128,15 @@ function ProfileInfo() {
           <div className="d-flex gap-5">
             <div className="d-flex flex-column align-items-center">
               <span className="fs-3">
-                <i class="bi bi-calendar2-week-fill"></i> Bookings
+                <i className="bi bi-calendar2-week-fill"></i> Bookings
               </span>
               <span className="fs-5">{profile?._count?.bookings}</span>
             </div>
             {manager ? (
               <div className="d-flex flex-column align-items-center">
-                <Link to={`/venues`}>
+                <Link to={`/visit/${name}`}>
                   <span className="fs-3">
-                    <i class="bi bi-houses-fill"></i> Venues
+                    <i className="bi bi-houses-fill"></i> Venues
                   </span>
                 </Link>
                 <span className="fs-5"> {profile?._count?.venues}</span>

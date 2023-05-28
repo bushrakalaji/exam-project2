@@ -36,7 +36,7 @@ function VenueCard({ venue: { name, price, media, id, meta, location } }) {
       <Card.Body className="d-flex flex-column">
         <div className="d-flex mb-2 justify-content-between align-items-start flex-wrap gap-19">
           <Card.Title className="mb-0 font-weight-bold">
-            {name.substring(0, 20)}
+            {name.substring(0, 15)}
           </Card.Title>
           <Badge className="mb-1 fs-6 bg-success">{price},-</Badge>
         </div>{" "}

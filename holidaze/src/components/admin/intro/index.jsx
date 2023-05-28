@@ -1,10 +1,9 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 
 function DashboardIntro() {
   return (
     <div
-      className=" rounded flex-column  d-flex m-auto gap-1"
+      className=" rounded flex-column  d-flex m-auto gap-1 text-dark"
       style={{ maxWidth: "700px" }}
     >
       <h1>Welcome to holidaze Dashboard</h1>
@@ -19,16 +18,7 @@ function DashboardIntro() {
       </p>
       <div className="d-flex flex-column gap-1">
         <span className="fs-5 f-elza"> Best regards,</span>
-        <span className="fs-5"> HOLIDAZE</span>
-      </div>
-      <div>
-        {" "}
-        <Button className="btn-danger " style={{ textDecoration: "none" }}>
-          <a href="#explore" className="text-light ">
-            {" "}
-            Explore Venues{" "}
-          </a>
-        </Button>
+        <span className="fs-5">HOLIDAZE ©</span>
       </div>
     </div>
   );

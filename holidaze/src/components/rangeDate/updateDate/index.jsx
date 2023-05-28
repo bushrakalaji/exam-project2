@@ -23,7 +23,7 @@ function UpdateDateRangePicker({ setSelectionRange }) {
       key: "selection1",
     },
   });
-  console.log(selectionRangeState.selection1);
+
   const [bookedDates, setBookedDates] = useState([]);
 
   useEffect(() => {

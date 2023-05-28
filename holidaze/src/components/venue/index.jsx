@@ -6,11 +6,13 @@ import DeleteVenue from "../admin/deleteVenue";
 import { Row, Col, Nav, NavDropdown } from "react-bootstrap";
 import CreateBooking from "../createBooking";
 import placeholder from "../../images/placeHolder.png";
-import { LinkContainer } from "react-router-bootstrap";
+import IsLoading from "../isLoading";
+import UpdateVenue from "../admin/updateVenue";
 
 function Venue() {
   const { currentVenue, fetchVenue, isLoading, hasError } = useVenues();
   let { id } = useParams();
+  const token = load("token");
   const profile = load("profile");
   const ownerName = profile && profile.name;
   const meta = currentVenue.meta;
@@ -19,8 +21,6 @@ function Venue() {
   const pets = meta && meta.pets;
   const parking = meta && meta.parking;
 
-  console.log(id);
-  console.log(currentVenue);
   useEffect(() => {
     fetchVenue(
       `https://api.noroff.dev/api/v1/holidaze/venues/${id}?_bookings=true&_owner=true`
@@ -30,7 +30,7 @@ function Venue() {
   const media = currentVenue.media;
 
   if (isLoading || !currentVenue) {
-    return <div>loading ....</div>;
+    return <IsLoading />;
   }
 
   if (hasError || !currentVenue) {
@@ -52,9 +52,8 @@ function Venue() {
             title={<i className="bi bi-three-dots fs-1"></i>}
             menuVariant="dark"
           >
-            <LinkContainer to={`/update/${currentVenue.id}`}>
-              <NavDropdown.Item>Update</NavDropdown.Item>
-            </LinkContainer>
+            {" "}
+            <UpdateVenue />
             <DeleteVenue />
           </NavDropdown>
         </div>
@@ -235,6 +234,7 @@ function Venue() {
                     {" "}
                     <span>Name : {currentVenue?.owner?.name}</span>
                   </Link>
+
                   <span>Email : {currentVenue?.owner?.email}</span>
                 </div>
               </div>
@@ -421,11 +421,16 @@ function Venue() {
                   style={{ objectFit: "cover" }}
                 />
               </div>
+
               <div className="d-flex flex-column">
-                <Link to={`/profile/${currentVenue?.owner?.name}`}>
-                  {" "}
+                {token ? (
+                  <Link to={`/profile/${currentVenue?.owner?.name}`}>
+                    {" "}
+                    <span>Name : {currentVenue?.owner?.name}</span>
+                  </Link>
+                ) : (
                   <span>Name : {currentVenue?.owner?.name}</span>
-                </Link>
+                )}
                 <span>Email : {currentVenue?.owner?.email}</span>
               </div>
             </div>

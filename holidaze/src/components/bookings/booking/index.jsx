@@ -26,6 +26,7 @@ function BookingById() {
         navigate("/dashboard/bookings");
         window.location.reload();
       },
+      draggable: false,
     });
   };
   useEffect(() => {

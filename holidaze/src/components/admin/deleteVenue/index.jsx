@@ -5,6 +5,8 @@ import { API_BASE_URL } from "../../../api/api";
 import { useVenues } from "../../../hooks/useVenueStore";
 import { Button, Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
+import IsLoading from "../../isLoading";
+import HasError from "../../hasError";
 
 function DeleteVenue() {
   const { deleteVenue, isLoading, hasError } = useVenues();
@@ -19,6 +21,7 @@ function DeleteVenue() {
         navigate("/dashboard/venues");
         window.location.reload();
       },
+      draggable: false,
     });
 
   const handleDelete = async () => {
@@ -26,7 +29,7 @@ function DeleteVenue() {
       await deleteVenue(`${API_BASE_URL}/venues/${id}`, id);
       notify();
     } catch (error) {
-      console.error(error);
+      <HasError error={error} />;
     }
   };
   return (
@@ -45,7 +48,7 @@ function DeleteVenue() {
           >
             Delete
           </button>
-          {isLoading && <p>Deleting venue...</p>}
+          {isLoading && <IsLoading />}
           {hasError && (
             <p>There was an error deleting the venue. Please try again.</p>
           )}{" "}

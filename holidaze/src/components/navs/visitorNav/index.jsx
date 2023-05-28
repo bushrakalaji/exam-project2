@@ -43,8 +43,8 @@ function VisitorNavBar() {
                   <LinkContainer to="/">
                     <Nav.Link className="text-light rounded">Home</Nav.Link>
                   </LinkContainer>{" "}
-                  <LoginForm />
-                  <RegisterForm />
+                  <LoginForm color={"white"} />
+                  <RegisterForm color={"white"} />
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

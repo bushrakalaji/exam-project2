@@ -7,7 +7,7 @@ import { Button, Modal } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 
 function DeleteBooking({ onBookingDeleted }) {
-  const { deleteBooking, isLoading, hasError } = useBookings();
+  const { deleteBooking } = useBookings();
   let { id } = useParams();
 
   const handleDelete = async () => {
@@ -37,10 +37,6 @@ function DeleteBooking({ onBookingDeleted }) {
           <button onClick={() => handleDelete(id)} className="btn btn-danger">
             Confirm Delete
           </button>
-          {isLoading && <p>Deleting venue...</p>}
-          {hasError && (
-            <p>There was an error deleting the venue. Please try again.</p>
-          )}{" "}
         </Modal.Body>
         <ToastContainer />
       </Modal>

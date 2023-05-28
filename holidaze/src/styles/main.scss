@@ -1,6 +1,7 @@
 @import "../styles/style.scss";
 body {
   font-family: "congenial" !important;
+  
 }
 .offcanvas {
   background-color: $primary !important;
@@ -11,7 +12,7 @@ body {
 }
 .bground {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(4, 4, 4, 0.534)),
-    url("../images/shutterstock_1821002357.jpg");
+    url("../images/shutterstock_1821002357_Easy-Resize.com.jpg");
   height: 500px;
   background-size: cover;
 }
@@ -97,9 +98,7 @@ p , .f-elza{
   max-width: 600px;
 }
 
-.bgLogin {
-  height: 100vh;
-}
+
 
 .transparent-toggle {
   background-color: transparent !important;
@@ -110,7 +109,7 @@ p , .f-elza{
 
 .profile {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(4, 4, 4, 0.534)),
-    url("../images/shutterstock_1821002357.jpg");
+    url("../images/shutterstock_1821002357_Easy-Resize.com.jpg");
     height: 300px;
     background-position: center;
     background-size: cover;
@@ -126,4 +125,13 @@ p , .f-elza{
     position: absolute !important;
     bottom: 45% !important;
     right: 1% !important;
+}
+
+/* Styles for screens between 300pxpx and 1000px */
+@media  (min-width: 300px) and (max-width: 1000px) {
+  /* CSS rules here will be applied only when the screen width is between 601px and 900px */
+  .bground {
+    height: 300px;
+    background-position: right top;
+  }
 }
