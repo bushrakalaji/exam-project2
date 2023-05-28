@@ -5,7 +5,6 @@ import HasError from "../../hasError";
 import IsLoading from "../../isLoading";
 import { Button, Form } from "react-bootstrap";
 import UpdateDateRangePicker from "../../rangeDate/updateDate";
-import { LinkContainer } from "react-router-bootstrap";
 import * as Yup from "yup";
 
 import { Modal } from "react-bootstrap";
@@ -111,8 +110,9 @@ function UpdateBooking() {
           >
             {" "}
             <Form.Group className="mb-2 gsts-input d-flex gap-2 align-items-center">
-              <Form.Label className=" ">Guests:</Form.Label>
+              <Form.Label htmlFor="guests">Guests:</Form.Label>
               <Form.Control
+                id="guests"
                 type="number"
                 value={guests}
                 onChange={handleGuestChange}
@@ -124,14 +124,13 @@ function UpdateBooking() {
               </Form.Control.Feedback>
             </Form.Group>
             <UpdateDateRangePicker setSelectionRange={setSelectionRange} />
-            <div className="d-flex gap-2 mt-2">
-              <Button type="submit" style={{ width: "50%" }}>
-                Update
-              </Button>
-              <LinkContainer to={`/booking/${id}`} style={{ width: "50%" }}>
-                <Button type="submit">Cancel</Button>
-              </LinkContainer>{" "}
-            </div>
+            <Button
+              type="submit"
+              variant="btn btn-outline-primary"
+              className="mt-3"
+            >
+              Update
+            </Button>
           </Form>{" "}
         </Modal.Body>
         <ToastContainer />
