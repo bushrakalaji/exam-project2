@@ -3,12 +3,13 @@
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Testing](#testing)
-5. [API Documentation](#api-documentation)
-6. [Contributing](#contributing)
-7. [Links](#links)
+2. [Technologies Used](#technologies-used)
+3. [Features](#features)
+4. [Installation](#installation)
+5. [Testing](#testing)
+6. [API Documentation](#api-documentation)
+7. [Contributing](#contributing)
+8. [Links](#links)
 
 ## Introduction
 
@@ -16,6 +17,15 @@ This project is a modern front-end application for the Holidaze accommodation bo
 
 The application has been developed using the Holidaze API, React as a JavaScript framework, and {CSS Framework name} for the styling. It's hosted on {Hosting Service name}.
 
+## Technologies Used
+This project is built with:
+
+- JavaScript (ES6)
+- React.js (>16)
+- {CSS Framework name} (>Version)
+- HTML5
+- CSS3
+- 
 ## Features
 
 - Browse a list of Venues
