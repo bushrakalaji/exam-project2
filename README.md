@@ -47,6 +47,10 @@ This application has been thoroughly tested during its development. If you want 
 
 The API used for this project is documented [here](https://docs.noroff.dev/holidaze/venues).
 
+
+## Contributing
+Please note that this project is for educational purposes. The code can be used for learning but may not be copied and used in another project.
+
 ## Links
 
 - [Gantt chart](Gantt chart link)
