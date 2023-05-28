@@ -53,7 +53,7 @@ Please note that this project is for educational purposes. The code can be used 
 
 ## Links
 
-- [Design prototype][(Design prototype link)](https://xd.adobe.com/view/cf6e0aec-e4fa-4dfb-b85f-992a7df74cee-9a3d/)
-- [Style guide]([Style guide link)](https://xd.adobe.com/view/cf6e0aec-e4fa-4dfb-b85f-992a7df74cee-9a3d/)
-- [Repository link]([Repository link](https://github.com/bushrakalaji/exam-project2))
-- [Hosted application demo link]([Hosted application demo link](https://holidazea.netlify.app/))
+- [(Design prototype link)](https://xd.adobe.com/view/cf6e0aec-e4fa-4dfb-b85f-992a7df74cee-9a3d/)
+- ([Style guide link)](https://xd.adobe.com/view/cf6e0aec-e4fa-4dfb-b85f-992a7df74cee-9a3d/)
+- ([Repository link](https://github.com/bushrakalaji/exam-project2))
+- ([Hosted application demo link](https://holidazea.netlify.app/))
