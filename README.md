@@ -15,17 +15,17 @@
 
 This project is a modern front-end application for the Holidaze accommodation booking site. It's designed to provide a seamless experience for both customers booking venues and venue managers handling administrative tasks.
 
-The application has been developed using the Holidaze API, React as a JavaScript framework, and {CSS Framework name} for the styling. It's hosted on {Hosting Service name}.
+The application has been developed using the Holidaze API, React as a JavaScript framework, and Bootstrap for the styling. It's hosted on Netlify.
 
 ## Technologies Used
 This project is built with:
 
 - JavaScript (ES6)
 - React.js (>16)
-- {CSS Framework name} (>Version)
+- Bootstrap (>5)
 - HTML5
 - CSS3
-- 
+
 ## Features
 
 - Browse a list of Venues
