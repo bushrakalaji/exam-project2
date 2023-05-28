@@ -75,6 +75,7 @@ function CreateVenue() {
   if (createdSuccsess) {
     notify();
   }
+
   return (
     <div>
       <Button onClick={handelShow} className="nav-link nav-tabs fs-5">
@@ -83,6 +84,7 @@ function CreateVenue() {
       <Modal show={show} onHide={handelClose} centered>
         <Modal.Header closeButton>Create Venue</Modal.Header>
         <Modal.Body>
+          <ToastContainer />
           <div className=" d-flex  text-primary  p-3  rounded venueForm m-auto">
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -305,7 +307,6 @@ function CreateVenue() {
             </form>{" "}
           </div>
         </Modal.Body>
-        <ToastContainer />
       </Modal>
     </div>
   );

@@ -4,7 +4,7 @@ import { useVenues } from "../../hooks/useVenueStore";
 import VenueCard from "../venueCard";
 import { Col, Row } from "react-bootstrap";
 import IsLoading from "../isLoading";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function VisitAdminVenues() {
   const { fetchAdminVenues, adminVenues, isLoading, hasError } = useVenues();
@@ -25,14 +25,32 @@ function VisitAdminVenues() {
   }
 
   return (
-    <Row xs={2} md={3} lg={4} className="g-2 d-flex" id="explore">
-      {adminVenues &&
-        adminVenues.map((venue) => (
-          <Col key={venue.id}>
-            <VenueCard venue={venue} className="mb-4 p-0" />
-          </Col>
-        ))}
-    </Row>
+    <>
+      {/******* Breadcrumb  ******/}
+
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to={`/profile/${name}`}>Profile</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            {name}
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Venues
+          </li>
+        </ol>
+      </nav>
+      <h1 className="fs-2">{name} Venues</h1>
+      <Row xs={2} md={3} lg={4} className="g-2 d-flex" id="explore">
+        {adminVenues &&
+          adminVenues.map((venue) => (
+            <Col key={venue.id}>
+              <VenueCard venue={venue} className="mb-4 p-0" />
+            </Col>
+          ))}
+      </Row>
+    </>
   );
 }
 

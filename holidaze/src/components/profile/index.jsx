@@ -8,7 +8,7 @@ import user from "../../images/user.png";
 import palceholder from "../../images/placeHolder.png";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { NavDropdown } from "react-bootstrap";
+import { Dropdown, ButtonGroup } from "react-bootstrap";
 import UpdateAvatar from "./update";
 import { useParams } from "react-router";
 import HasError from "../hasError";
@@ -18,7 +18,6 @@ function ProfileInfo() {
   const { name } = useParams();
   const myProfile = load("profile");
   const currentProfile = myProfile.name;
-  const manager = myProfile.venueManager === true;
 
   const managerTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -37,6 +36,7 @@ function ProfileInfo() {
     fetchProfile(
       `${API_BASE_URL}/profiles/${name}?_venues=true&_bookings=true`
     );
+    console.log(profile);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchProfile, name]);
   if (isLoading) {
@@ -48,6 +48,22 @@ function ProfileInfo() {
 
   return (
     <>
+      {/******* Breadcrumb  ******/}
+
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Profile
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            {profile.name}
+          </li>
+        </ol>
+      </nav>
+      <h1 className="fs-2">Profile</h1>
       <div className="rounded-bottom shadow ">
         <div className="profile rounded-top position-relative">
           <div
@@ -74,18 +90,22 @@ function ProfileInfo() {
               className="position-absolute "
               style={{
                 top: "100%",
-                right: "3%",
+                right: "1%",
               }}
             >
               {" "}
-              <NavDropdown
-                id="nav-dropdown-dark-example"
-                className="menuDots"
-                menuVariant="dark"
-                title={<i className="bi bi-three-dots fs-1"></i>}
-              >
-                <UpdateAvatar />
-              </NavDropdown>
+              <Dropdown className="menuDots " as={ButtonGroup}>
+                <Dropdown.Toggle
+                  id="dropdown-custom-components"
+                  variant="btn p-0 border-0 "
+                >
+                  <i className="bi bi-three-dots-vertical fs-2"></i>
+                  <span className="visually-hidden">Open</span>
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="super-colors">
+                  <UpdateAvatar />
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
           ) : null}
         </div>
@@ -93,7 +113,7 @@ function ProfileInfo() {
           <div className="position-relative d-flex flex-column  ">
             <div className="d-flex align-items-center gap-2">
               <span className="text-capitalize fs-3">{profile.name}</span>
-              {manager ? (
+              {profile.venueManager === true ? (
                 <OverlayTrigger
                   placement="right"
                   delay={{ show: 250, hide: 400 }}
@@ -132,7 +152,7 @@ function ProfileInfo() {
               </span>
               <span className="fs-5">{profile?._count?.bookings}</span>
             </div>
-            {manager ? (
+            {profile.venueManager === true ? (
               <div className="d-flex flex-column align-items-center">
                 <Link to={`/visit/${name}`}>
                   <span className="fs-3">

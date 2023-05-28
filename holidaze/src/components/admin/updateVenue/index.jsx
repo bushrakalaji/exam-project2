@@ -6,7 +6,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Modal } from "react-bootstrap";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
@@ -93,7 +92,6 @@ function UpdateVenue() {
       </Button>
       <Modal show={show} onHide={handelClose} centered>
         {" "}
-        <ToastContainer />
         <Modal.Header closeButton>Update Venue</Modal.Header>
         <Modal.Body>
           <form

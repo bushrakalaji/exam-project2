@@ -135,3 +135,13 @@ p , .f-elza{
     background-position: right top;
   }
 }
+
+
+/* Styles for screens between 300pxpx and 1000px */
+@media  (min-width: 300px) and (max-width: 700px) {
+  /* CSS rules here will be applied only when the screen width is between 601px and 900px */
+ .b-card {
+  width: "150px";
+  height: "100px";
+ }
+}

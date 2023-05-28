@@ -42,85 +42,88 @@ function BookedVenues() {
   }
 
   return (
-    <div className="d-flex flex-wrap justify-content-center gap-2">
-      {adminVenues &&
-        adminVenues.map((venue) => {
-          const bookings = venue.bookings;
-          if (bookings && bookings.length > 0) {
-            return (
-              <Card
-                key={venue.id}
-                className="h-100 shadow-sm bg-white rounded d-flex flex-column gap-2 "
-                style={{ height: "100%", width: "300px" }}
-              >
-                <div style={{ height: "200px" }}>
-                  {venue.media[0] ? (
-                    <Card.Img
-                      alt={name}
-                      variant="top"
-                      src={venue.media[0]}
-                      style={{
-                        objectFit: "cover",
-                        height: "100%",
-                        width: "100%",
-                      }}
-                    />
-                  ) : (
-                    <Card.Img
-                      alt={name}
-                      variant="top"
-                      src={placeholder}
-                      style={{
-                        objectFit: "cover",
-                        height: "100%",
-                        width: "100%",
-                      }}
-                    />
-                  )}
-                </div>
-
-                {/* Card body here */}
-                <Button
-                  onClick={() => handleShow(venue)}
-                  variant="btn btn-outline-primary"
-                  className="m-2"
+    <>
+      <h1 className="fs-2 text-center">Booked Venues</h1>
+      <div className="d-flex flex-wrap justify-content-center gap-2">
+        {adminVenues &&
+          adminVenues.map((venue) => {
+            const bookings = venue.bookings;
+            if (bookings && bookings.length > 0) {
+              return (
+                <Card
+                  key={venue.id}
+                  className="h-100 shadow-sm bg-white rounded d-flex flex-column gap-2 "
+                  style={{ height: "100%", width: "300px" }}
                 >
-                  Show Bookings
-                </Button>
-              </Card>
-            );
-          }
-          return null; // Return a value explicitly when condition is not met
-        })}
+                  <div style={{ height: "200px" }}>
+                    {venue.media[0] ? (
+                      <Card.Img
+                        alt={name}
+                        variant="top"
+                        src={venue.media[0]}
+                        style={{
+                          objectFit: "cover",
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      />
+                    ) : (
+                      <Card.Img
+                        alt={name}
+                        variant="top"
+                        src={placeholder}
+                        style={{
+                          objectFit: "cover",
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      />
+                    )}
+                  </div>
 
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          Bookings for {selectedVenue?.name}
-        </Modal.Header>
-        <Modal.Body>
-          {selectedVenue &&
-            selectedVenue.bookings.map((booking) => (
-              <div
-                key={booking.id}
-                className="d-flex flex-column bg-secondary m-2 p-2 gap-2"
-              >
-                <div className="d-flex gap-1 fs-4">
-                  <span>{booking.guests}</span>{" "}
-                  <i className="bi bi-people-fill"></i>
+                  {/* Card body here */}
+                  <Button
+                    onClick={() => handleShow(venue)}
+                    variant="btn btn-outline-primary"
+                    className="m-2"
+                  >
+                    Show Bookings
+                  </Button>
+                </Card>
+              );
+            }
+            return null; // Return a value explicitly when condition is not met
+          })}
+
+        <Modal show={show} onHide={handleClose} centered>
+          <Modal.Header closeButton>
+            Bookings for {selectedVenue?.name}
+          </Modal.Header>
+          <Modal.Body>
+            {selectedVenue &&
+              selectedVenue.bookings.map((booking) => (
+                <div
+                  key={booking.id}
+                  className="d-flex flex-column bg-secondary m-2 p-2 gap-2"
+                >
+                  <div className="d-flex gap-1 fs-4">
+                    <span>{booking.guests}</span>{" "}
+                    <i className="bi bi-people-fill"></i>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span>
+                      From: {new Date(booking.dateFrom).toLocaleString("en-US")}
+                    </span>
+                    <span>
+                      To: {new Date(booking.dateTo).toLocaleString("en-US")}
+                    </span>
+                  </div>
                 </div>
-                <div className="d-flex flex-column">
-                  <span>
-                    From: {new Date(booking.dateFrom).toLocaleString("en-US")}
-                  </span>
-                  <span>
-                    To: {new Date(booking.dateTo).toLocaleString("en-US")}
-                  </span>
-                </div>
-              </div>
-            ))}
-        </Modal.Body>
-      </Modal>
-    </div>
+              ))}
+          </Modal.Body>
+        </Modal>
+      </div>
+    </>
   );
 }
 

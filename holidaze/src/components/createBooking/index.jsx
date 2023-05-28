@@ -80,12 +80,13 @@ function CreateBooking() {
       className="shadow-lg p-3 mb-5  rounded d-flex flex-column align-items-auto p-2 rounded"
     >
       <Form.Group className="mb-2 gsts-input d-flex gap-2 align-items-center">
-        <Form.Label className="text-primary">Guests:</Form.Label>
+        <Form.Label className="text-primary" htmlFor="guests">
+          Guests:
+        </Form.Label>
         <Form.Control
+          id="guests"
           type="number"
-          value={guests}
           onChange={handleGuestChange}
-          min={1}
           max={currentVenue?.maxGuests}
           isInvalid={!!errors.guests}
         />

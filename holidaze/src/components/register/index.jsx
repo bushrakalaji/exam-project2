@@ -163,7 +163,7 @@ function RegisterForm({ color }) {
                 onClick={handelClose}
                 variant="btn btn-outline-primary"
               >
-                Cansel
+                Cancel
               </Button>
             </div>
             <div className="border-primary border-1 border-top border-opacity-25 p-1 d-flex align-items-center gap-2">

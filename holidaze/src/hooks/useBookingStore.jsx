@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { authFetch, headers } from "../auth/authFetch";
+import HasError from "../components/hasError";
 
 const useBookingStore = create((set) => ({
   bookings: [],
@@ -22,7 +23,7 @@ const useBookingStore = create((set) => ({
 
       set(() => ({ deletedBooking: true, isLoading: false }));
     } catch (error) {
-      console.error(error); // This will help you understand the error.
+      <HasError error={error} />; // This will help you understand the error.
       set(() => ({ hasError: true, isLoading: false }));
     }
   },

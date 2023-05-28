@@ -6,9 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import HasError from "../../hasError";
 import IsLoading from "../../isLoading";
 import DeleteBooking from "../deleteBooking";
-import { NavDropdown } from "react-bootstrap";
+import { Dropdown, ButtonGroup, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import UpdateBooking from "../update";
+import placeholder from "../../../images/placeHolder.png";
 
 function BookingById() {
   const { currentBooking, fetchBooking, isLoading, hasError } = useBookings();
@@ -23,7 +24,7 @@ function BookingById() {
   const notifyBookingDeleted = () => {
     toast.success("Booking deleted successfully!", {
       onClose: () => {
-        navigate("/dashboard/bookings");
+        navigate("/bookings");
         window.location.reload();
       },
       draggable: false,
@@ -47,59 +48,85 @@ function BookingById() {
   }
 
   return (
-    <section className="d-flex border border-2 border-primary p-3 border-opacity-10 rounded gap-3 flex-wrap position-relative">
-      <div className="position-absolute top-0 end-0">
-        {" "}
-        <NavDropdown
-          id="nav-dropdown-dark-example"
-          title={<i className="bi bi-three-dots fs-1"></i>}
-          menuVariant="dark"
-          className="d-flex flex-column align-items-start"
-        >
-          {" "}
-          <LinkContainer to={`/venues/${venue.id}`}>
-            <NavDropdown.Item>
-              <span>View venue</span>{" "}
-            </NavDropdown.Item>
-          </LinkContainer>
-          <UpdateBooking />
-          <DeleteBooking onBookingDeleted={handleBookingDeleted} />
-        </NavDropdown>
-      </div>
-      <div className="d-flex gap-5 flex-wrap">
-        <div>
+    <div className="d-flex flex-wrap justify-content-center gap-1 ">
+      {" "}
+      <Row
+        className="img-style shadow-sm rounded mx-2 flex-fill"
+        style={{ overflow: "hidden", maxWidth: "600px", maxHeight: "600px" }}
+      >
+        {media ? (
           <img
             src={media}
             alt={venue.name}
-            className="img-fluid rounded"
-            width="500px"
+            style={{ objectFit: "cover" }}
+            className="w-100 h-100 p-0"
           />
+        ) : (
+          <img
+            src={placeholder}
+            alt="placeholder"
+            style={{ objectFit: "cover" }}
+            className="w-100 h-100 p-0"
+          />
+        )}
+      </Row>
+      <div
+        className="d-flex flex-column gap-2 bg-secondary p-5 shadow-sm rounded position-relative  flex-fill"
+        style={{ maxWidth: "600px", maxHeight: "600px" }}
+      >
+        <div
+          className="position-absolute"
+          style={{ top: "0px", right: "10px" }}
+        >
+          {" "}
+          <Dropdown className="menuDots " as={ButtonGroup}>
+            <Dropdown.Toggle
+              id="dropdown-custom-components"
+              variant="btn p-0 border-0 "
+            >
+              <i className="bi bi-three-dots-vertical fs-2"></i>
+              <span className="visually-hidden">Open</span>
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="super-colors">
+              <LinkContainer to={`/venues/${venue.id}`}>
+                <Dropdown.Item>
+                  <span>View venue</span>{" "}
+                </Dropdown.Item>
+              </LinkContainer>
+              <UpdateBooking />
+              <DeleteBooking onBookingDeleted={handleBookingDeleted} />
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>{" "}
+        <h1>{venue.name}</h1>
+        <div className="d-flex gap-1 ">
+          <i className="bi bi-geo-alt-fill text-danger"></i>
+          <span> {venue.location.address} </span>{" "}
+          <span>{venue.location.city}</span>
+          <span>{venue.location.zip} </span>{" "}
+          <span> {venue.location.country}</span>
+        </div>{" "}
+        <div>
+          <span className="fs-4 fst-italic">
+            {" "}
+            <i className="bi bi-people-fill"></i> {guests}{" "}
+          </span>
         </div>
-        <div className="d-flex flex-column gap-3">
-          <h1>{venue.name}</h1>
-          <div className="d-flex gap-5 flex-wrap">
-            <div>
-              <h3>Date & Time</h3>
-              <div className="d-flex flex-column gap-1 bg-danger p-3 rounded-start text-light fs-5 fst-italic border border-secondary border-3">
-                {expired ? (
-                  <span>This booking has expired</span>
-                ) : (
-                  <div className="d-flex flex-column gap-1">
-                    <span>From: {formattedDateFrom}</span>
-                    <span>To: {formattedDateTo}</span>
-                  </div>
-                )}
+        <div>
+          <div className="d-flex flex-column gap-1 bg-danger p-3 rounded-start text-light fs-5 fst-italic border border-secondary border-3">
+            {expired ? (
+              <span>This booking has expired</span>
+            ) : (
+              <div className="d-flex flex-column gap-1">
+                <span>From: {formattedDateFrom}</span>
+                <span>To: {formattedDateTo}</span>
               </div>
-            </div>
-            <div>
-              <h3>Guests</h3>
-              <span className="fs-4 fst-italic">{guests} Person/s</span>
-            </div>
+            )}
           </div>
         </div>
-      </div>
+      </div>{" "}
       {bookingDeleted && notifyBookingDeleted()}
-    </section>
+    </div>
   );
 }
 

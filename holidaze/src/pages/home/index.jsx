@@ -1,12 +1,13 @@
 import TopSection from "../../components/homeBackground";
-import SearchAndFilterBar from "../../components/search&filter";
+import Search from "../../components/searchBar";
+
 import VenuesList from "../../components/venues";
 
 function HomePage() {
   return (
     <>
       <TopSection />
-      <SearchAndFilterBar />
+      <Search />
       <VenuesList />
     </>
   );

@@ -13,10 +13,8 @@ function DeleteBooking({ onBookingDeleted }) {
   const handleDelete = async () => {
     try {
       await deleteBooking(`${API_BASE_URL}/bookings/${id}`, id);
-
       onBookingDeleted();
     } catch (error) {
-      console.error(error);
       toast.error("There was an error deleting the booking. Please try again.");
     }
   };

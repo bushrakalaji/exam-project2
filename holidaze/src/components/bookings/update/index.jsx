@@ -129,7 +129,7 @@ function UpdateBooking() {
                 Update
               </Button>
               <LinkContainer to={`/booking/${id}`} style={{ width: "50%" }}>
-                <Button type="submit">Cansel</Button>
+                <Button type="submit">Cancel</Button>
               </LinkContainer>{" "}
             </div>
           </Form>{" "}

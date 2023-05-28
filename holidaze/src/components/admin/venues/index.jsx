@@ -25,14 +25,17 @@ function AdminVenues() {
   }
 
   return (
-    <Row xs={2} md={3} lg={4} className="g-2 d-flex" id="explore">
-      {adminVenues &&
-        adminVenues.map((venue) => (
-          <Col key={venue.id}>
-            <VenueCard venue={venue} className="mb-4 p-0" />
-          </Col>
-        ))}
-    </Row>
+    <>
+      <h1 className="fs-2 ">My Venues</h1>
+      <Row xs={2} md={3} lg={4} className="g-2 d-flex" id="explore">
+        {adminVenues &&
+          adminVenues.map((venue) => (
+            <Col key={venue.id}>
+              <VenueCard venue={venue} className="mb-4 p-0" />
+            </Col>
+          ))}
+      </Row>
+    </>
   );
 }
 

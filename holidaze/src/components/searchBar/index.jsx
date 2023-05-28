@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "../search";
 
-function SearchAndFilterBar() {
+function Search() {
   return (
     <div className="d-flex align-items-center justify-content-between my-3">
       <SearchBar />
@@ -9,4 +9,4 @@ function SearchAndFilterBar() {
   );
 }
 
-export default SearchAndFilterBar;
+export default Search;

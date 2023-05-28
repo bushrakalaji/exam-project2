@@ -3,8 +3,13 @@ import { authFetch, headers } from "../auth/authFetch";
 import { toast } from "react-toastify";
 
 const notify = () =>
-  toast.success("Venue updated  successfully!", {
+  toast.success("Venue updated successfully!", {
+    onClose: () => {
+      toast.dismiss();
+      window.location.reload();
+    },
     draggable: false,
+    closeOnClick: true,
   });
 const useVenueStore = create((set) => ({
   venues: [],

@@ -121,7 +121,7 @@ function LoginForm({ color }) {
                 onClick={handelClose}
                 variant="btn btn-outline-primary"
               >
-                Cansel
+                Cancel
               </Button>
             </div>
             <div className="border-primary border-1 border-top border-opacity-25  py-3 d-flex align-items-center gap-2  ">
