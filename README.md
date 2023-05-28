@@ -45,7 +45,7 @@ This application has been thoroughly tested during its development. If you want 
 
 ## API Documentation
 
-The API used for this project is documented [here]([Noroff API documentation link](https://docs.noroff.dev/holidaze/venues)).
+The API used for this project is documented [here](https://docs.noroff.dev/holidaze/venues).
 
 ## Links
 
