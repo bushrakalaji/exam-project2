@@ -76,7 +76,7 @@ function LoginForm({ color, padding }) {
             onSubmit={handleSubmit(onSubmit)}
             className="d-flex flex-column  gap-3 text-primary p-5 rounded "
           >
-            <label className="form-label">
+            <label className="form-label d-flex flex-column gap-1">
               Email:
               <input
                 {...register("email")}
