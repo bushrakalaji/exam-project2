@@ -6,10 +6,9 @@
 2. [Features](#features)
 3. [Installation](#installation)
 4. [Testing](#testing)
-5. [User Guide](#user-guide)
-6. [API Documentation](#api-documentation)
-7. [Contributing](#contributing)
-8. [Links](#links)
+5. [API Documentation](#api-documentation)
+6. [Contributing](#contributing)
+7. [Links](#links)
 
 ## Introduction
 
@@ -43,9 +42,6 @@ To set up and run this project locally, follow these steps:
 
 This application has been thoroughly tested during its development. If you want to run the tests locally, use the following command: `npm run test`.
 
-## User Guide
-
-Please refer to the [User Guide](./USER_GUIDE.md) for detailed instructions on how to use the application.
 
 ## API Documentation
 
