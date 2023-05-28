@@ -20,9 +20,11 @@ function Logout() {
   }, [loggedOut, navigate]);
 
   return (
-    <button onClick={handleLogout} className="text-light btn btn-primary">
-      Logout <i className="bi bi-box-arrow-right"></i>
-    </button>
+    <div className="nav-link">
+      <button onClick={handleLogout} className="text-light btn p-0">
+        Logout <i className="bi bi-box-arrow-right "></i>
+      </button>
+    </div>
   );
 }
 

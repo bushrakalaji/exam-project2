@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   email: yup.string().email().required("Email is required"),
   password: yup.string().required("Password is required"),
 });
-function LoginForm({ color }) {
+function LoginForm({ color, padding }) {
   const {
     register,
     handleSubmit,
@@ -60,14 +60,15 @@ function LoginForm({ color }) {
 
   return (
     <div>
-      <Button
-        onClick={handelShow}
-        variant=" btn btn-outline-primary"
-        className=""
-        style={{ color: color }}
-      >
-        Login
-      </Button>
+      <div className="nav-link">
+        <Button
+          onClick={handelShow}
+          variant=" btn btn-outline-primary"
+          style={{ color: color, padding: padding }}
+        >
+          Login
+        </Button>
+      </div>
       <Modal show={show} onHide={handelClose} centered>
         <Modal.Header closeButton>Login</Modal.Header>
         <Modal.Body>

@@ -26,6 +26,7 @@ function DateRangePicker({ setSelectionRange }) {
         startDate: new Date(booking.dateFrom),
         endDate: new Date(booking.dateTo),
         key: "selection2",
+        color: "#A31420",
         autoFocus: false,
         disabled: true,
       }));
@@ -49,7 +50,7 @@ function DateRangePicker({ setSelectionRange }) {
           ? [selectionRangeState.selection1, ...bookedDates]
           : [selectionRangeState.selection1]
       }
-      rangeColors={["#2c9a00"]}
+      rangeColors={["#006814"]}
     />
   );
 }

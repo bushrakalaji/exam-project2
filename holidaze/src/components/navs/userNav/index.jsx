@@ -26,16 +26,13 @@ function UserNavBar() {
             <Navbar.Brand href="/" className="text-light ">
               <Image src={logo} width="130px" alt="logo" />
             </Navbar.Brand>
-            <Navbar.Toggle
-              aria-controls={`offcanvasNavbar-expand-${expand}`}
-              className="text-light "
-            />
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
             >
-              <Offcanvas.Header closeButton>
+              <Offcanvas.Header closeButton closeVariant="white">
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                   Holidaze
                 </Offcanvas.Title>

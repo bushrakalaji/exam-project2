@@ -27,7 +27,7 @@ const schema = yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
 });
-function RegisterForm({ color }) {
+function RegisterForm({ color, padding }) {
   const [serverError, setServerError] = useState("");
   const {
     register,
@@ -61,13 +61,15 @@ function RegisterForm({ color }) {
 
   return (
     <div>
-      <Button
-        onClick={handelShow}
-        style={{ color: color }}
-        variant="btn btn-outline-primary"
-      >
-        Register
-      </Button>
+      <div className="nav-link">
+        <Button
+          onClick={handelShow}
+          style={{ color: color, padding: padding }}
+          variant="btn btn-outline-primary"
+        >
+          Register
+        </Button>
+      </div>
       <Modal show={show} onHide={handelClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>REGISTER</Modal.Title>

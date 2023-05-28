@@ -33,7 +33,7 @@ function VisitorNavBar() {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
             >
-              <Offcanvas.Header closeButton>
+              <Offcanvas.Header closeButton closeVariant="white">
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                   Holidaze
                 </Offcanvas.Title>
@@ -43,8 +43,8 @@ function VisitorNavBar() {
                   <LinkContainer to="/">
                     <Nav.Link className="text-light rounded">Home</Nav.Link>
                   </LinkContainer>{" "}
-                  <LoginForm color={"white"} />
-                  <RegisterForm color={"white"} />
+                  <LoginForm color={"white"} padding="0px" />
+                  <RegisterForm color={"white"} padding="0px" />
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

@@ -45,7 +45,10 @@ a {
 .booking-form {
   max-width: 350px;
 }
-
+.navbar-toggler {
+ background-color: #ffffffcd !important;
+ color: rgba(255, 255, 255, 0.316) !important;
+}
 .gsts-input {
   max-width: 330px;
 }
@@ -137,11 +140,3 @@ p , .f-elza{
 }
 
 
-/* Styles for screens between 300pxpx and 1000px */
-@media  (min-width: 300px) and (max-width: 700px) {
-  /* CSS rules here will be applied only when the screen width is between 601px and 900px */
- .b-card {
-  width: "150px";
-  height: "100px";
- }
-}
