@@ -98,7 +98,7 @@ function BookingById() {
             </Dropdown.Menu>
           </Dropdown>
         </div>{" "}
-        <h1>{venue.name}</h1>
+        <h1 className="fs-2">{venue.name}</h1>
         <div className="d-flex gap-1 ">
           <i className="bi bi-geo-alt-fill text-danger"></i>
           <span> {venue.location.address} </span>{" "}

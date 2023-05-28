@@ -43,6 +43,7 @@ function UpdateDateRangePicker({ setSelectionRange }) {
           startDate: new Date(booking.dateFrom),
           endDate: new Date(booking.dateTo),
           key: "selection3",
+          color: "#A31420",
           autoFocus: false,
           disabled: true,
         }));
