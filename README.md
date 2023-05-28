@@ -33,7 +33,7 @@ The application has been developed using the Holidaze API, React as a JavaScript
 
 To set up and run this project locally, follow these steps:
 
-1. Clone the repository: `git clone {repository link}`.
+1. Clone the repository: `git clone {[repository link](https://github.com/bushrakalaji/exam-project2)}`.
 2. Navigate to the project folder: `cd holidaze`.
 3. Install dependencies: `npm install`.
 4. Run the application: `npm start`.
