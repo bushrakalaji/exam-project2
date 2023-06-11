@@ -1,4 +1,6 @@
-# Holidaze -  Accommodation Booking Application
+![Alt Text](./holidaze/src/images/holidaze.png)
+
+# Holidaze - Accommodation Booking Application
 
 ## Table of Contents
 
@@ -18,6 +20,7 @@ This project is a modern front-end application for the Holidaze accommodation bo
 The application has been developed using the Holidaze API, React as a JavaScript framework, and Bootstrap for the styling. It's hosted on Netlify.
 
 ## Technologies Used
+
 This project is built with:
 
 - JavaScript (ES6)
@@ -52,13 +55,12 @@ To set up and run this project locally, follow these steps:
 
 This application has been thoroughly tested during its development. If you want to run the tests locally, use the following command: `npm run test`.
 
-
 ## API Documentation
 
 The API used for this project is documented [here](https://docs.noroff.dev/holidaze/venues).
 
-
 ## Contributing
+
 Please note that this project is for educational purposes. The code can be used for learning but may not be copied and used in another project.
 
 ## Links
